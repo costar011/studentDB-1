@@ -1,11 +1,9 @@
 import Student from "../model/Student";
 
 const homeController = (req, res) => {
-  res.render("screens/home.pug");
+  res.render("screens/home");
 };
 
-const globalController = {
+export const globalController = {
   homeController,
 };
-
-export default globalController;
