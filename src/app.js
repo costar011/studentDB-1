@@ -4,7 +4,7 @@ import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
 import globalRouter from "./router/globalRouter";
-import mongoose from "mongoose";
+import connect from "../db/mongo";
 
 const PORT = 7777;
 
@@ -14,25 +14,11 @@ app.use(morgan(`dev`));
 
 app.use(express.static(path.join(__dirname, `/assets`)));
 
+connect();
+
 app.set("view engine", "pug");
 
-mongoose.connect(
-  `mongodb://4leaf:fourleaf0309@210.114.1.127:27017/admin`,
-  {
-    dbName: `JYR_PRA`,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-  },
-  (error) => {
-    if (error) {
-      console.log("❌ Failed");
-    } else {
-      console.log("⭕️  DB SUCCEES ");
-    }
-  }
-);
-
-app.get("/", globalRouter);
+app.use("/", globalRouter);
 
 app.listen(PORT, () => {
   console.log(`✅  ${PORT} Server Start`);
