@@ -21,5 +21,5 @@ app.set("view engine", "pug");
 app.use("/", globalRouter);
 
 app.listen(PORT, () => {
-  console.log(`✅  ${PORT} Server Start`);
+  console.log(`⭕️ ${PORT} Server Start`);
 });
